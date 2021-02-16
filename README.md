@@ -1,2 +1,2 @@
 # BE32 Networking
-Used for storing networking data for common applications.
+Used for storing networking data for our software.

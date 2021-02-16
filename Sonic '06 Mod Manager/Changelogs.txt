@@ -1,0 +1,192 @@
+﻿► Fixed verification check only checking Xbox 360 files.
+► Removed the Unlock Tails' Flight Limit tweak in favour of the new patch.
+► Migrated update servers to the Big Endian 32 repository.
+
+Sonic '06 Mod Manager - Version 3.32
+
+► Added verification check for when users fail to extract the game's ISO properly.
+► Fixed patches not showing up in the Mod Creator.
+► Changed how patches are updated.
+
+Sonic '06 Mod Manager - Version 3.31
+
+► XEX decryption now forces decompression for more correct output (REQUIRES PATCH UPDATES).
+► Added a small options menu for updating patches.
+
+Sonic '06 Mod Manager - Version 3.3
+
+► Added check to ensure Java is installed.
+► Added catch to Win32Exception when certain prerequisites are missing.
+
+Sonic '06 Mod Manager - Version 3.29
+
+► Actually fixed the PKG API regression this time.
+
+Sonic '06 Mod Manager - Version 3.28
+
+► Added top and bottom iteration (right-click the up/down buttons).
+► Added priority iteration for patches.
+► Added WriteBytes function.
+
+Sonic '06 Mod Manager - Version 3.27
+
+► Fixed regression for the Copy function.
+
+Sonic '06 Mod Manager - Version 3.26
+
+► Fixed regression caused by the new PKG API.
+► Removed pkgtool from application resources.
+► Available drive space is now checked when unpacking archives.
+► Rewritten the patch script deserialiser.
+► Added PackageErase function to remove PKG entries.
+► Added Search function to filter specific search queries.
+► Updated StringReplace function to parse line breaks.
+
+Sonic '06 Mod Manager - Version 3.25
+
+► Added better PKG reading and writing to the patch scripts.
+► Added MST reading and writing to the patch scripts (see the documentation, for more information).
+► Added a context menu to the install button when right-clicking.
+
+Sonic '06 Mod Manager - Version 3.24
+
+► Fixed application hanging for awhile with no network connection.
+► Added mod stacking debugging feature.
+
+Sonic '06 Mod Manager - Version 3.23
+
+► Fixed Patch Creator not using correct formatting for filenames.
+
+Sonic '06 Mod Manager - Version 3.22
+
+► Mods can now require patches.
+► Mods can now have 'hybrid patches' for merge edits.
+► Mods can now specify if ARCs in the custom list will be added to a custom filesystem.
+► Added a mod troubleshooter to the debug menu.
+► Fixed PackageEdit not editing events with the same name as the key.
+► Custom filesystems can now be merged with other mods that use the same archive name.
+
+Sonic '06 Mod Manager - Version 3.21
+
+► Added more verbose debug messages for mod/patch/tweak installation.
+► Added an option to save the debug log to a file.
+
+Sonic '06 Mod Manager - Version 3.2
+
+► Fixed a crash when cancelling the browser during first time setup.
+► Fixed reset option clearing application data only, rather than the settings too.
+► Added a debugging option to allow for loading snapshots.
+► Added a new WriteTextBytes function to the scripting language.
+► Removed EncryptExecutable function and automated it after all patches are installed (PlayStation 3 only).
+► Removed debug flag for console logs, so debug mode doesn't need to be enabled for error logging.
+► Patch filenames now use Pascal Case by default.
+► Better error handling for patches and tweaks.
+► Debug logs can now be copied to the clipboard easily.
+
+Sonic '06 Mod Manager - Version 3.19
+
+► Fixed globalisation issue with languages that use commas as decimal places.
+► Set Field of View box to increment by 0.1 to account for the float.
+
+Sonic '06 Mod Manager - Version 3.18
+
+► Field of View now uses a 32-bit float, rather than a single byte.
+
+Sonic '06 Mod Manager - Version 3.17
+
+► Fixed the Field of View modifier not doing anything.
+► Improved All Systems mods.
+
+Sonic '06 Mod Manager - Version 3.16
+
+► Fixed the ParameterRename and PackageEdit functions calling incorrect variables when recursive.
+
+Sonic '06 Mod Manager - Version 3.15
+
+► Fixed software updater not switching to the backup server.
+
+Sonic '06 Mod Manager - Version 3.14
+
+► Fixed ParameterAdd function calling incorrect variable when recursive.
+► Added Begin with Rings to the Tweaks section.
+
+Sonic '06 Mod Manager - Version 3.13
+
+► Updated the Delete function to allow folder deletion (only inside archives).
+► Added WriteNullBytes function.
+
+Sonic '06 Mod Manager - Version 3.12
+
+► Fixed mod installation priority not being restored on launch.
+
+Sonic '06 Mod Manager - Version 3.11
+
+► Re-arranged mod configuration files to add the description above the Filesystem section.
+► Fixed paths being called as 'illegitimate' due to an incorrect cast.
+► Fixed Field of View patch being forced on with the PlayStation 3 version.
+
+Sonic '06 Mod Manager - Version 3.1
+
+► Sonic '06 Mod Manager now installs the GameBanana registry key per user on the computer.
+► Fixed Mod/Patch Editor not allowing content renaming.
+
+Sonic '06 Mod Manager - Version 3.09
+
+► Sonic '06 Mod Manager now checks if the Game Executable exists and isn't null before uninstalling content.
+► Added support for command line arguments when launching emulators.
+► Fixed crash if the Game Executable is empty.
+
+Sonic '06 Mod Manager - Version 3.08
+
+► Added support for custom Xenia builds.
+
+Sonic '06 Mod Manager - Version 3.07
+
+► Fixed 1-Click Installer not extracting 7Z/RAR files.
+► Added language modifier to the Emulator section.
+► Added descriptions to all options in the Emulator section.
+► Fixed ARC repacker not cleaning up temporary data.
+
+Sonic '06 Mod Manager - Version 3.06
+
+► Fixed camera tweaks being reset on launch.
+► Moved the install and play buttons outside of the Mods section.
+
+Sonic '06 Mod Manager - Version 3.05
+
+► Added new functions to the patch engine.
+► Added support for PlayStation 3 executable patches.
+► Patches now support any executable.
+
+Sonic '06 Mod Manager - Version 3.04
+
+► Fixed crashes for PlayStation 3 compatible tweaks.
+► Disabled UI elements that are incompatible with the PlayStation 3 version.
+► Fixed the Patch Editor erasing functions upon editing.
+► Fixed the patch updater crashing if there's an empty line in the repository information.
+► Added system specifications to snapshots.
+
+Sonic '06 Mod Manager - Version 3.03
+
+► Added snapshots for developer debugging.
+► Fixed mod uninstallation clashing with patch uninstallation.
+► Fixed XEX not being backed up when using a custom Field of View.
+► Improved the ignore list for patches.
+
+Sonic '06 Mod Manager - Version 3.02
+
+► Now checks if Java is installed before applying patches and/or tweaks that require it.
+
+Sonic '06 Mod Manager - Version 3.01
+
+► Added an option to disable mod uninstall on launch.
+► Added checks to Rename and RenameByExtension patch functions.
+► Fixed accent colour not applying to selected sections on launch.
+► Fixed colour inheriting from Windows not allowing new colours until two attempts.
+
+Sonic '06 Mod Manager - Version 3.0
+
+► Sonic '06 Mod Manager has been completely rewritten.
+► Entirely new user interface.
+► Easier to use.
+► It's still a Mod Manager.
