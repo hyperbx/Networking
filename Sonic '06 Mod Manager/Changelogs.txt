@@ -1,4 +1,10 @@
-﻿► Fixed verification check only checking Xbox 360 files.
+﻿► Right-clicking on a patch to open the containing folder now selects the patch in Explorer once opened.
+► List views now alternate between lighter and darker colours for items to make things easier to read.
+► You can now create profiles to switch between different mod, patch and tweak configurations easily.
+
+Sonic '06 Mod Manager - Version 3.33
+
+► Fixed verification check only checking Xbox 360 files.
 ► Removed the Unlock Tails' Flight Limit tweak in favour of the new patch.
 ► Migrated update servers to the Big Endian 32 repository.
 
