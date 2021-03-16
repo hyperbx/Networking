@@ -1,4 +1,10 @@
-﻿► Right-clicking on a patch to open the containing folder now selects the patch in Explorer once opened.
+﻿► Added a warning for when you overwrite a profile that already exists from the creation dialog.
+► The last created profile is now updated upon creating a new profile.
+► Profiles that have no mods, patches or tweaks will no longer request that you select a profile in the preview.
+
+Sonic '06 Mod Manager - Version 3.34
+
+► Right-clicking on a patch to open the containing folder now selects the patch in Explorer once opened.
 ► List views now alternate between lighter and darker colours for items to make things easier to read.
 ► You can now create profiles to switch between different mod, patch and tweak configurations easily.
 
