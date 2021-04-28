@@ -1,4 +1,12 @@
-﻿► Added a warning for when you overwrite a profile that already exists from the creation dialog.
+﻿► Removed Force Render Target Views and 2x Resolution options from the Emulator menu in favour of a Resolution combo box, due to newer versions of Xenia supporting RTV and up to 4K upscaling.
+► Replaced Arctool implementation with Marathon.
+► Archives are no longer compressed when installing mods - this should speed things up a bit.
+► Updated Field of View for the E3 camera type.
+► Added WriteVirtualNop and WriteVirtualBytes to the patching system.
+
+Sonic '06 Mod Manager - Version 3.35
+
+► Added a warning for when you overwrite a profile that already exists from the creation dialog.
 ► The last created profile is now updated upon creating a new profile.
 ► Profiles that have no mods, patches or tweaks will no longer request that you select a profile in the preview.
 
