@@ -1,4 +1,10 @@
-﻿► Removed Force Render Target Views and 2x Resolution options from the Emulator menu in favour of a Resolution combo box, due to newer versions of Xenia supporting RTV and up to 4K upscaling.
+﻿► Fixed Resolution combo box not being disabled when a PlayStation 3 executable is selected.
+► Fixed some combo boxes on the Tweaks page being disabled when setting the API to Custom on the Emulator page.
+► Added optional count to the WriteNopPPC and WriteVirtualNop functions to make writing NOPs easier to addresses without spamming the function constantly.
+
+Sonic '06 Mod Manager - Version 3.36
+
+► Removed Force Render Target Views and 2x Resolution options from the Emulator menu in favour of a Resolution combo box, due to newer versions of Xenia supporting RTV and up to 4K upscaling.
 ► Replaced Arctool implementation with Marathon.
 ► Archives are no longer compressed when installing mods - this should speed things up a bit.
 ► Updated Field of View for the E3 camera type.
