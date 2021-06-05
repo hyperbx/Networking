@@ -1,0 +1,9 @@
+add disk/bb/SonicActionCommonScoreHud.ar.00
+add disk/bb/SonicActionCommonScoreHud.arl
+add lua54.dll
+add Math.lua
+add mod.ini
+add ScoreGenerations.dll
+add ScoreGenerations.ini
+add ScoreGenerations.json
+add ScoreGenerations.lua
