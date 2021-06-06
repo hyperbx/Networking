@@ -1,3 +1,6 @@
+## Score Generations - Version 1.0.4
+- Fixed configuration schema writing to the incorrect parameter for trick combos.
+
 ## Score Generations - Version 1.0.3
 - Fixed quick stepping not giving you score.
 
