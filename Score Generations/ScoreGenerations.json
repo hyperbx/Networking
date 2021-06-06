@@ -1,0 +1,360 @@
+{
+    "Groups": [
+	  {
+        "Name": "Score",
+        "DisplayName": "Score",
+        "Elements": [
+          {
+            "Name": "Ring",
+            "Description": [
+                "The amount of score rewarded for collecting rings."
+            ],
+            "DisplayName": "Rings",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 10
+          },
+		  {
+            "Name": "Enemy",
+            "Description": [
+                "The amount of score rewarded for defeating enemies."
+            ],
+            "DisplayName": "Enemies",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 300
+          },
+		  {
+            "Name": "Physics",
+            "Description": [
+                "The amount of score rewarded for breaking physics objects."
+            ],
+            "DisplayName": "Objects",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 150
+          },
+		  {
+            "Name": "PointMarker",
+            "Description": [
+                "The amount of score rewarded for passing through checkpoints."
+            ],
+            "DisplayName": "Checkpoints",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 0
+          },
+		  {
+            "Name": "RedRing",
+            "Description": [
+                "The amount of score rewarded for collecting red rings."
+            ],
+            "DisplayName": "Red Rings",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 2000
+          },
+		  {
+            "Name": "RainbowRing",
+            "Description": [
+                "The amount of score rewarded for passing through rainbow rings."
+            ],
+            "DisplayName": "Rainbow Rings",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 1000
+          },
+		  {
+            "Name": "ItemBox",
+            "Description": [
+                "The amount of score rewarded for breaking item boxes."
+            ],
+            "DisplayName": "Item Boxes",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 0
+          },
+		  {
+            "Name": "SuperRing",
+            "Description": [
+                "The amount of score rewarded for collecting super rings."
+            ],
+            "DisplayName": "Super Rings",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 100
+          },
+		  {
+            "Name": "TrickFinish",
+            "Description": [
+                "The amount of score rewarded for finishing trick combos."
+            ],
+            "DisplayName": "Trick Finish",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 5000
+          },
+		  {
+            "Name": "Tricks",
+            "Description": [
+                "The amount of score rewarded for performing trick combos."
+            ],
+            "DisplayName": "Trick Combos",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 100
+          },
+		  {
+            "Name": "Life",
+            "Description": [
+                "The amount of score rewarded for collecting lives."
+            ],
+            "DisplayName": "Lives",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 1000
+          },
+		  {
+            "Name": "DashRing",
+            "Description": [
+                "The amount of score rewarded for passing through dash rings."
+            ],
+            "DisplayName": "Dash Rings",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 0
+          },
+		  {
+            "Name": "QuickStep",
+            "Description": [
+                "The amount of score rewarded for quick stepping whilst running."
+            ],
+            "DisplayName": "Quick Stepping",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 0
+          },
+		  {
+            "Name": "Drift",
+            "Description": [
+                "The amount of score rewarded for drifting."
+            ],
+            "DisplayName": "Drifting",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 0
+          },
+		  {
+            "Name": "Balloon",
+            "Description": [
+                "The amount of score rewarded for popping balloons."
+            ],
+            "DisplayName": "Balloons",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 75
+          },
+		  {
+            "Name": "Super",
+            "Description": [
+                "The amount of score rewarded for being Super Sonic at the frequency specified in the behaviour section."
+            ],
+            "DisplayName": "Super Sonic",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 2000
+          },
+		  {
+            "Name": "BoardTrick",
+            "Description": [
+                "The amount of score rewarded for jumping off trick ramps using the board."
+            ],
+            "DisplayName": "Board Tricks",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 2500
+          },
+        ]
+      },
+	  {
+        "Name": "Bonus",
+        "DisplayName": "Bonus",
+        "Elements": [
+          {
+            "Name": "timeBonusAlgorithm",
+            "Description": [
+                "The Lua equation that calculates the time bonus.\n",
+				"Exposed variables:",
+				"• totalRingCount - total number of rings obtained throughout the stage.",
+				"• totalVelocity - total velocity built up throughout the stage when passing checkpoints.",
+				"• ringCount - number of rings the player finished with.",
+				"• minutes - minutes on the timer.",
+				"• seconds - seconds on the timer.",
+				"• elapsedTime - total amount of time passed in seconds.",
+				"• score - total score the player finished with.",
+				"• scoreLimit - the maximum amount of score the player can obtain.",
+				"• minSeconds - elapsed time in seconds the player must finish below for a higher time bonus.",
+				"• maxSeconds - elapsed time in seconds the player must finish below for a time bonus.\n",
+				"Set this to '0' to disable it."
+            ],
+            "DisplayName": "Time Bonus Algorithm",
+            "Type": "string",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": "elapsedTime * 100"
+          },
+		  {
+            "Name": "ringBonusAlgorithm",
+            "Description": [
+                "The Lua equation that calculates the ring bonus.\n",
+				"Exposed variables:",
+				"• totalRingCount - total number of rings obtained throughout the stage.",
+				"• totalVelocity - total velocity built up throughout the stage when passing checkpoints.",
+				"• ringCount - number of rings the player finished with.",
+				"• minutes - minutes on the timer.",
+				"• seconds - seconds on the timer.",
+				"• elapsedTime - total amount of time passed in seconds.",
+				"• score - total score the player finished with.",
+				"• scoreLimit - the maximum amount of score the player can obtain.",
+				"• minSeconds - elapsed time in seconds the player must finish below for a higher time bonus.",
+				"• maxSeconds - elapsed time in seconds the player must finish below for a time bonus.\n",
+				"Set this to '0' to disable it."
+            ],
+            "DisplayName": "Ring Bonus Algorithm",
+            "Type": "string",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": "totalRingCount * 50"
+          },
+		  {
+            "Name": "speedBonusAlgorithm",
+            "Description": [
+                "The Lua equation that calculates the speed bonus.\n",
+				"Exposed variables:",
+				"• totalRingCount - total number of rings obtained throughout the stage.",
+				"• totalVelocity - total velocity built up throughout the stage when passing checkpoints.",
+				"• ringCount - number of rings the player finished with.",
+				"• minutes - minutes on the timer.",
+				"• seconds - seconds on the timer.",
+				"• elapsedTime - total amount of time passed in seconds.",
+				"• score - total score the player finished with.",
+				"• scoreLimit - the maximum amount of score the player can obtain.",
+				"• minSeconds - elapsed time in seconds the player must finish below for a higher time bonus.",
+				"• maxSeconds - elapsed time in seconds the player must finish below for a time bonus.\n",
+				"Set this to '0' to disable it."
+            ],
+            "DisplayName": "Speed Bonus Algorithm",
+            "Type": "string",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": "totalVelocity * 3"
+          }
+        ]
+      },
+	  {
+        "Name": "Behaviour",
+        "DisplayName": "Behaviour",
+        "Elements": [
+          {
+            "Name": "scoreLimit",
+            "Description": [
+                "The maximum amount of score the player can obtain."
+            ],
+            "DisplayName": "Score Limit",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 999999
+          },
+          {
+            "Name": "superSonicTimer",
+            "Description": [
+                "The amount of time in seconds the player is rewarded for being Super Sonic."
+            ],
+            "DisplayName": "Super Sonic Timer",
+            "Type": "int",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": 2
+          }
+        ]
+      },
+	  {
+        "Name": "Appearance",
+        "DisplayName": "Appearance",
+        "Elements": [
+          {
+            "Name": "scoreFormat",
+            "Description": [
+                "The string format used to display the score on the HUD.\n",
+				"Examples:",
+				"%d - write the raw value.",
+				"%06d - write the value with six digit padding."
+            ],
+            "DisplayName": "Score Format",
+            "Type": "string",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": "%06d"
+          }
+        ]
+      },
+	  {
+	    "Name": "Developer",
+        "DisplayName": "Developer",
+        "Elements": [
+          {
+            "Name": "customXNCP",
+            "Description": [
+                "Disables Score Generations' HUD in favour of using a custom layout from another mod."
+            ],
+            "DisplayName": "Custom HUD Layout",
+            "Type": "bool",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": false
+          },
+          {
+            "Name": "debugLua",
+            "Description": [
+                "Prints Lua debug information to the console window."
+            ],
+            "DisplayName": "Lua Debugger",
+            "Type": "bool",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": false
+          },
+		  {
+            "Name": "forbiddenStages",
+            "Description": [
+                "The list of stages that don't display or count your score."
+            ],
+            "DisplayName": "Forbidden Stages",
+            "Type": "string",
+            "MinValue": null,
+            "MaxValue": null,
+            "DefaultValue": "bde, bde001, blb, blb001, bms, bms001, bne, bne001, bpc, bpc001, bsd, bsd001, bsl, bsl001"
+          }
+        ]
+      }
+    ],
+    "IniFile": "ScoreGenerations.ini"
+  }

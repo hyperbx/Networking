@@ -1,3 +1,4 @@
 add mod.ini
 add ScoreGenerations.dll
 add ScoreGenerations.ini
+add ScoreGenerations.json
