@@ -1,3 +1,6 @@
+## Score Generations - Version 1.0.3
+- Fixed quick stepping not giving you score.
+
 ## Score Generations - Version 1.0.2
 - Fixed configuration schema writing to the incorrect section for score.
 - Moved comments in the configuration above the sections to fix an issue with Hedge Mod Manager adding them to the section names.
