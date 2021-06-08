@@ -1,3 +1,11 @@
+## Score Generations - Version 1.1.1
+- Improved time bonus calculation.
+- Readjusted the rank tables to account for the improved time bonus.
+- Added configurable score time-out like Sonic Colours.
+- Added user algorithm for mod developers to execute their own non-descript Lua functions.
+- Added print function to Lua.
+- Exposed the stage ID to Lua.
+
 ## Score Generations - Version 1.1
 - Fixed the No Trick Rainbow Rings code not rewarding score for rainbow rings.
 - Implemented homing chain and slam bonuses.
