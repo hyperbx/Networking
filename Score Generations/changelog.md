@@ -1,3 +1,7 @@
+## Score Generations - Version 1.1
+- Fixed the No Trick Rainbow Rings code not rewarding score for rainbow rings.
+- Implemented homing chain and slam bonuses.
+
 ## Score Generations - Version 1.0.4
 - Fixed configuration schema writing to the incorrect parameter for trick combos.
 
