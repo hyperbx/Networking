@@ -1,3 +1,9 @@
+## Score Generations - Version 1.2
+- Fixed progress bar going slightly over the rank you achieved.
+- Exposed a ton more totals to Lua for mod developers.
+- Increased ranks for Seaside Hill and Rooftop Run.
+- Added options for perfect bonus (you can now only get a perfect bonus for A ranks by default).
+
 ## Score Generations - Version 1.1.1
 - Improved time bonus calculation.
 - Readjusted the rank tables to account for the improved time bonus.
