@@ -1,3 +1,6 @@
+## Score Generations - Version 1.2.1
+- Improved No Trick Rainbow Rings detection by removing it and rewriting the patch (UPDATE YOUR COMMUNITY CODES).
+
 ## Score Generations - Version 1.2
 - Fixed progress bar going slightly over the rank you achieved.
 - Exposed a ton more totals to Lua for mod developers.
