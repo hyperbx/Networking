@@ -1,3 +1,10 @@
+## Score Generations - Version 1.3
+- Added option to toggle velocity bonus.
+- Added option to restore your last score from a checkpoint.
+- Exposed the velocity bonus multiplier to the configuration.
+- Trick finishes now increase the total tricks counter.
+- All statistics now reset correctly when necessary.
+
 ## Score Generations - Version 1.2.2
 - Security update for Lua callback.
 
