@@ -1,3 +1,6 @@
+## Score Generations - Version 1.3.1
+- Renamed instances of 'velocity bonus' to 'speed bonus' to better represent the result from Sonic Unleashed.
+
 ## Score Generations - Version 1.3
 - Added option to toggle velocity bonus.
 - Added option to restore your last score from a checkpoint.
