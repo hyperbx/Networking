@@ -1,3 +1,6 @@
+## Score Generations - Version 1.3.2
+- Fixed incorrect result animations when the player finishes without a perfect bonus.
+
 ## Score Generations - Version 1.3.1
 - Renamed instances of 'velocity bonus' to 'speed bonus' to better represent the result from Sonic Unleashed.
 

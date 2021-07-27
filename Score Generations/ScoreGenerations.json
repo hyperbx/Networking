@@ -416,6 +416,18 @@
 			"Elements":
 			[
 				{
+					"Name": "speedBonusMultiplier",
+					"Description":
+					[
+						"The multiplier used to increase the speed bonus."
+					],
+					"DisplayName": "Speed Bonus Multiplier",
+					"Type": "int",
+					"MinValue": null,
+					"MaxValue": null,
+					"DefaultValue": 10
+				},
+				{
 					"Name": "homingChainMultiplier",
 					"Description":
 					[
@@ -438,18 +450,6 @@
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 2
-				},
-				{
-					"Name": "speedBonusMultiplier",
-					"Description":
-					[
-						"The multiplier used to increase the speed bonus."
-					],
-					"DisplayName": "Speed Bonus Multiplier",
-					"Type": "int",
-					"MinValue": null,
-					"MaxValue": null,
-					"DefaultValue": 10
 				}
 			]
         },
