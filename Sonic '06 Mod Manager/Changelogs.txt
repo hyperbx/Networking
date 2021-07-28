@@ -1,4 +1,9 @@
-﻿► Fixed Resolution combo box not being disabled when a PlayStation 3 executable is selected.
+﻿► Implemented virtual to physical address calculation for PlayStation 3 executables for better patch writing.
+► Fixed WriteBase64 not creating new directories when writing a new file.
+
+Sonic '06 Mod Manager - Version 3.37
+
+► Fixed Resolution combo box not being disabled when a PlayStation 3 executable is selected.
 ► Fixed some combo boxes on the Tweaks page being disabled when setting the API to Custom on the Emulator page.
 ► Added optional count to the WriteNopPPC and WriteVirtualNop functions to make writing NOPs easier to addresses without spamming the function constantly.
 
