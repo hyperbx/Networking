@@ -1,3 +1,6 @@
+## Score Generations - Version 1.3.3
+- Added configurable clamp to homing chain and slam bonuses to prevent absurd score bonuses for custom stages.
+
 ## Score Generations - Version 1.3.2
 - Fixed incorrect result animations when the player finishes without a perfect bonus.
 
