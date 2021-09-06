@@ -1,4 +1,9 @@
-﻿► Implemented virtual to physical address calculation for PlayStation 3 executables for better patch writing.
+﻿► Fixed MSAA option breaking multiplayer.
+► Removed Save Data option from First Time Setup to clear up confusion on its requirement (despite it saying it's optional).
+
+Sonic '06 Mod Manager - Version 3.38
+
+► Implemented virtual to physical address calculation for PlayStation 3 executables for better patch writing.
 ► Fixed WriteBase64 not creating new directories when writing a new file.
 
 Sonic '06 Mod Manager - Version 3.37
