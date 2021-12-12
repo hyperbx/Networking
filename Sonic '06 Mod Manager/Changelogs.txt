@@ -1,4 +1,11 @@
-﻿► Fixed MSAA option breaking multiplayer.
+﻿► Removed option to disable MSAA from the tweaks page - use the patch instead.
+► Implemented immersive dark mode to make the title bar black to fit the dark UI.
+► Updated behaviour for the Emulator page when RPCS3 is being used or the Xenia API is set to Custom.
+► Added separate width and height options for Xenia - requires the latest version of Xenia to use.
+
+Sonic '06 Mod Manager - Version 3.39
+
+► Fixed MSAA option breaking multiplayer.
 ► Removed Save Data option from First Time Setup to clear up confusion on its requirement (despite it saying it's optional).
 
 Sonic '06 Mod Manager - Version 3.38
