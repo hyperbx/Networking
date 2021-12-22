@@ -1,0 +1,2 @@
+## Server Migration
+- Score Generations has been moved to another location. Please update to migrate to the new server in the mod configuration to receive further updates. This will only be available for 30 days, as of December 22nd.
