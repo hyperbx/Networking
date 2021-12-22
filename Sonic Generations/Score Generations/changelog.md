@@ -1,3 +1,14 @@
+## Score Generations - Version 1.3.5
+- Implemented an API for mod developers to use to access Score Generations functions from external DLLs. Please update for support with future mods.
+- Implemented S rank requirements for custom HUDs.
+- Reimplemented the ring bonus progress bar in the results screen.
+- Stages that don't have rank tables will now be marked as forbidden, allowing Gens' default score system to be used instead.
+- The Lua engine will now fall back on the last loaded Lua script instead of the default Score Generations one if a mod of higher priority doesn't have a Lua script.
+- Fixed score counter displaying zero after hitting the goal plate as Classic Sonic.
+
+## Score Generations - Version 1.3.4
+- Server migration... Congratulations, you made it through!
+
 ## Score Generations - Version 1.3.3
 - Added configurable clamp to homing chain and slam bonuses to prevent absurd score bonuses for custom stages.
 
