@@ -1,4 +1,8 @@
-﻿► Fixed the Height option on the Emulator page not saving your setting.
+﻿► Improved performance for custom filesystem uninstallation.
+
+Sonic '06 Mod Manager - Version 3.41
+
+► Fixed the Height option on the Emulator page not saving your setting.
 ► Fixed the custom accent colour reset button not restoring the correct default accent colour.
 
 Sonic '06 Mod Manager - Version 3.4
