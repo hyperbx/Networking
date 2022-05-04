@@ -124,7 +124,7 @@
 					"Type": "int",
 					"MinValue": null,
 					"MaxValue": null,
-					"DefaultValue": 100
+					"DefaultValue": 25
 				},
 				{
 					"Name": "Life",
@@ -278,6 +278,19 @@
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 5000
+				},
+				{
+					"Name": "trickBonusLimit",
+					"Description":
+					[
+						"The limit the trick bonus should be clamped to after being multiplied.\n",
+						"Set this to 0 to disable it."
+					],
+					"DisplayName": "Trick Bonus Limit",
+					"Type": "int",
+					"MinValue": null,
+					"MaxValue": null,
+					"DefaultValue": 12800
 				}
 			]
         },
@@ -448,7 +461,7 @@
 						"The multiplier used to increase the speed bonus."
 					],
 					"DisplayName": "Speed Bonus Multiplier",
-					"Type": "int",
+					"Type": "float",
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 10
@@ -460,7 +473,7 @@
 						"The multiplier used to increase the homing chain bonus."
 					],
 					"DisplayName": "Homing Chain Multiplier",
-					"Type": "int",
+					"Type": "float",
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 2
@@ -472,7 +485,19 @@
 						"The multiplier used to increase the slam bonus."
 					],
 					"DisplayName": "Slam Multiplier",
-					"Type": "int",
+					"Type": "float",
+					"MinValue": null,
+					"MaxValue": null,
+					"DefaultValue": 2
+				},
+				{
+					"Name": "trickMultiplier",
+					"Description":
+					[
+						"The multiplier used to increase the trick bonus."
+					],
+					"DisplayName": "Trick Multiplier",
+					"Type": "float",
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 2
@@ -503,7 +528,7 @@
 						"The amount of time in seconds the player is rewarded for being Super Sonic."
 					],
 					"DisplayName": "Super Sonic Timer",
-					"Type": "int",
+					"Type": "float",
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 2
@@ -515,7 +540,7 @@
 						"The amount of time in seconds the slam bonus times out after when the player is grounded."
 					],
 					"DisplayName": "Slam Timer",
-					"Type": "int",
+					"Type": "float",
 					"MinValue": null,
 					"MaxValue": null,
 					"DefaultValue": 2

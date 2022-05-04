@@ -1,3 +1,9 @@
+## Score Generations - Version 1.4
+- Implemented trick bonus per direction, multiplying when you change direction and resetting when you keep using the same direction.
+- Changed the multipliers to use floats instead of integers to support non-whole bonus multiplication.
+- Changed the timers to use floats instead of integers for more precise timing between deltas.
+- Implemented additional API functions for third-party mods to utilise (see the [wiki](https://github.com/HyperBE32/App-Extension-Mods/wiki/Score-Generations#using-the-api) for more details).
+
 ## Score Generations - Version 1.3.5
 - Implemented an API for mod developers to use to access Score Generations functions from external DLLs. Please update for support with future mods.
 - Implemented S rank requirements for custom HUDs.
