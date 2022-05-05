@@ -1,3 +1,7 @@
+## Score Generations - Version 1.4.1
+- Fixed the game crashing when loading into a stage with Restore Last Checkpoint Score enabled.
+- Fixed score resetting to zero when dying at a checkpoint, despite Restore Last Checkpoint Score being enabled.
+
 ## Score Generations - Version 1.4
 - Implemented trick bonus per direction, multiplying when you change direction and resetting when you keep using the same direction.
 - Changed the multipliers to use floats instead of integers to support non-whole bonus multiplication.
