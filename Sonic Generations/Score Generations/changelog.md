@@ -1,3 +1,7 @@
+## Score Generations - Version 1.4.2
+- Fixed the ring count not persisting in results for custom HUDs using BlueBlur.
+- Fixed the game crashing when defeating a boss after backing out of a stage.
+
 ## Score Generations - Version 1.4.1
 - Fixed the game crashing when loading into a stage with Restore Last Checkpoint Score enabled.
 - Fixed score resetting to zero when dying at a checkpoint, despite Restore Last Checkpoint Score being enabled.
