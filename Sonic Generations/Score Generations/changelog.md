@@ -1,3 +1,7 @@
+## Score Generations - Version 1.4.3
+- Fixed time computation returning zero (this should fix your final score being lower than expected with the time bonus).
+- Added max velocity to the API for returning the highest recorded velocity in the stage.
+
 ## Score Generations - Version 1.4.2
 - Fixed the ring count not persisting in results for custom HUDs using BlueBlur.
 - Fixed the game crashing when defeating a boss after backing out of a stage.
