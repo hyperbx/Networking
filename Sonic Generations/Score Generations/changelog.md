@@ -1,3 +1,6 @@
+## Score Generations - Version 1.4.4
+- Fixed results progress bar appearing empty if the player finishes with zero rings.
+
 ## Score Generations - Version 1.4.3
 - Fixed time computation returning zero (this should fix your final score being lower than expected with the time bonus).
 - Added max velocity to the API for returning the highest recorded velocity in the stage.
