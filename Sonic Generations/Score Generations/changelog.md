@@ -1,3 +1,7 @@
+## Score Generations - Version 1.4.5
+- Implemented E rank requirements for custom HUDs.
+- Fixed irregularities with Restore Last Checkpoint Score when restarting the stage whilst dead.
+
 ## Score Generations - Version 1.4.4
 - Fixed results progress bar appearing empty if the player finishes with zero rings.
 
