@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 1.1.1
+- Added Korean localisation (thanks [Trepe Serafin](https://gamebanana.com/members/2351910)).
+
 ## Discord Frontiers - Version 1.1
 - Added French localisation (thanks [LJSTAR](https://twitter.com/LJSTAR_)).
 - Added Italian localisation (thanks [NextinHKRY](https://github.com/NextinMono)).

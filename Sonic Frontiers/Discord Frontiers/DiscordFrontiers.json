@@ -74,6 +74,10 @@
 			{
 				"DisplayName": "中文简体 (Chinese Simplified)",
 				"Value": "zh-CN"
+			},
+			{
+				"DisplayName": "한국어 (Korean)",
+				"Value": "ko-KR"
 			}
 		]
 	},

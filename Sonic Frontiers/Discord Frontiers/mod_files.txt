@@ -9,6 +9,7 @@ add Languages/es-AR.json
 add Languages/fr-FR.json
 add Languages/it-IT.json
 add Languages/ja-JP.json
+add Languages/ko-KR.json
 add Languages/nl-NL.json
 add Languages/nn-NO.json
 add Languages/pl-PL.json
