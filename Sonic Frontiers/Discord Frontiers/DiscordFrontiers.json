@@ -1,0 +1,81 @@
+{
+    "Groups":
+	[
+	    {
+			"Name": "General",
+			"DisplayName": "General",
+			"Elements":
+			[
+				{
+					"Name": "language",
+					"DisplayName": "Language",
+					"Type": "LanguageType",
+					"DefaultValue": "English"
+				}
+			]
+        }
+    ],
+	"Enums": 
+	{
+		"LanguageType": 
+		[
+			{
+				"DisplayName": "English",
+				"Value": "en-GB"
+			},
+			{
+				"DisplayName": "Français (France)",
+				"Value": "fr-FR"
+			},
+			{
+				"DisplayName": "Italiano (Italy)",
+				"Value": "it-IT"
+			},
+			{
+				"DisplayName": "Dutch (Netherlands)",
+				"Value": "nl-NL"
+			},
+			{
+				"DisplayName": "Deutsch (German)",
+				"Value": "de-DE"
+			},
+			{
+				"DisplayName": "Español (Argentina)",
+				"Value": "es-AR"
+			},
+			{
+				"DisplayName": "Nynorsk (Norwegian)",
+				"Value": "nn-NO"
+			},
+			{
+				"DisplayName": "Polski (Polish)",
+				"Value": "pl-PL"
+			},
+			{
+				"DisplayName": "Português (Portugal)",
+				"Value": "pt-PT"
+			},
+			{
+				"DisplayName": "Português (Brazil)",
+				"Value": "pt-BR"
+			},
+			{
+				"DisplayName": "Русский (Russian)",
+				"Value": "ru-RU"
+			},
+			{
+				"DisplayName": "日本語 (Japanese)",
+				"Value": "ja-JP"
+			},
+			{
+				"DisplayName": "中文繁體 (Chinese Traditional)",
+				"Value": "zh-TW"
+			},
+			{
+				"DisplayName": "中文简体 (Chinese Simplified)",
+				"Value": "zh-CN"
+			}
+		]
+	},
+    "IniFile": "DiscordFrontiers.ini"
+}
