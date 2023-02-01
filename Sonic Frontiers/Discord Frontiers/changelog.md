@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 1.1.2
+- Updated Russian localisation to correct "Cyber Space" translation (thanks [ik-01](https://github.com/ik-01)).
+
 ## Discord Frontiers - Version 1.1.1
 - Added Korean localisation (thanks [Trepe Serafin](https://gamebanana.com/members/2351910)).
 
