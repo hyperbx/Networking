@@ -16,5 +16,6 @@ add Languages/pl-PL.json
 add Languages/pt-BR.json
 add Languages/pt-PT.json
 add Languages/ru-RU.json
+add Languages/uk-UA.json
 add Languages/zh-CN.json
 add Languages/zh-TW.json

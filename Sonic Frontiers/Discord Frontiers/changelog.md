@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 1.1.3
+- Added Ukrainian localisation (thanks [Dunker961](https://github.com/Dunker961)).
+
 ## Discord Frontiers - Version 1.1.2
 - Updated Russian localisation to correct "Cyber Space" translation (thanks [ik-01](https://github.com/ik-01)).
 
