@@ -1,4 +1,8 @@
-﻿► Improved performance for custom filesystem uninstallation.
+﻿► Fixed PlayStation 3 executable signing.
+
+Sonic '06 Mod Manager - Version 3.42
+
+► Improved performance for custom filesystem uninstallation.
 
 Sonic '06 Mod Manager - Version 3.41
 
