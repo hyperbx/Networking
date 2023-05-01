@@ -1,2 +1,4 @@
 add mod.ini
 add EnhancedDropDash.dll
+add EnhancedDropDash.ini
+add EnhancedDropDash.json
