@@ -1,3 +1,8 @@
+## Enhanced Drop Dash - Version 2.1
+- Added an option to disable the 2D rolling fixes if needed.
+- Added an option to disable fans specifically when rolling (useful for Air Dash).
+- Fixed fans not working at all.
+
 ## Enhanced Drop Dash - Version 2.0
 - A semi-complete rewrite of Enhanced Drop Dash with stability improvements, new features and more polished ideas.
 - The old "Stomp Dash" as you know it is now "Quick Stomp Dash".
