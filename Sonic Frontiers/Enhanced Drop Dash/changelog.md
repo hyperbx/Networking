@@ -1,9 +1,9 @@
-## Enhanced Drop Dash - Version 2.1
+## Enhanced Drop Dash - Version 2.1.0
 - Added an option to disable the 2D rolling fixes if needed.
 - Added an option to disable fans specifically when rolling (useful for Air Dash).
 - Fixed fans not working at all.
 
-## Enhanced Drop Dash - Version 2.0
+## Enhanced Drop Dash - Version 2.0.0
 - A semi-complete rewrite of Enhanced Drop Dash with stability improvements, new features and more polished ideas.
 - The old "Stomp Dash" as you know it is now "Quick Stomp Dash".
 - Added a ***new*** "Stomp Dash" that will now let you drop dash when landing from a stomp. Stomp, drop and roll!
@@ -16,12 +16,12 @@
 
 It is recommended that you use the **Retain Ground Velocity for Jump** code with this update.
 
-## Enhanced Drop Dash - Version 1.2
+## Enhanced Drop Dash - Version 1.2.0
 - "Immediately Uncurl Stomp Dash" is no longer available in side view (2D sections).
 
-## Enhanced Drop Dash - Version 1.1
+## Enhanced Drop Dash - Version 1.1.0
 - Stomp Dash now only uses horizontal velocity to check if you should be allowed to do a regular stomp.
 - "Immediately Uncurl Stomp Dash" is no longer available in Cyber Space.
 
-## Enhanced Drop Dash - Version 1.0
+## Enhanced Drop Dash - Version 1.0.0
 - Initial release.
