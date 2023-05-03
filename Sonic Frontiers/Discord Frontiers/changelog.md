@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 1.1.4
+- Fixes for Sonic Frontiers v1.20.
+
 ## Discord Frontiers - Version 1.1.3
 - Added Ukrainian localisation (thanks [Dunker961](https://github.com/Dunker961)).
 
