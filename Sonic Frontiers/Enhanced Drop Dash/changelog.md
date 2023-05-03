@@ -1,3 +1,6 @@
+## Enhanced Drop Dash - Version 2.2.1
+- Specified the units for Hold Delay in the configuration.
+
 ## Enhanced Drop Dash - Version 2.2.0
 - Added a configurable delay for the "Hold" input type for Stomp Dash.
 
