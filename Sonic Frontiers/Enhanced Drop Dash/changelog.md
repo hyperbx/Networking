@@ -1,3 +1,6 @@
+## Enhanced Drop Dash - Version 2.2.0
+- Added a configurable delay for the "Hold" input type for Stomp Dash.
+
 ## Enhanced Drop Dash - Version 2.1.0
 - Added an option to disable the 2D rolling fixes if needed.
 - Added an option to disable fans specifically when rolling (useful for Air Dash).
