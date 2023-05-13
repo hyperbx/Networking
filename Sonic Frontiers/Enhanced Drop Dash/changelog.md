@@ -1,3 +1,8 @@
+## Enhanced Drop Dash - Version 2.3.0
+- Added an option to roll cancel via air boosting.
+- Added an option to roll cancel via stomping.
+- Fixed the recovery jump not always occurring after jumping out of an Air Dash with the Immediate uncurl type, allowing you to charge a Drop Dash afterwards.
+
 ## Enhanced Drop Dash - Version 2.2.1
 - Specified the units for Hold Delay in the configuration.
 
