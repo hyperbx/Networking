@@ -1,3 +1,6 @@
+## Enhanced Drop Dash - Version 2.3.1
+- Fixed being able to perform Quick Stomp Dash an unlimited amount of times with the Uncurl Type set to None.
+
 ## Enhanced Drop Dash - Version 2.3.0
 - Added an option to roll cancel via air boosting.
 - Added an option to roll cancel via stomping.
