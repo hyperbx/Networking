@@ -1,3 +1,6 @@
+## Disable Skills - Version 1.0.3
+- Added signature caching (speeds up boot times).
+
 ## Disable Skills - Version 1.0.2
 - Fixed being unable to perform a homing attack whilst air boosting when Homing Shot is disabled.
 
