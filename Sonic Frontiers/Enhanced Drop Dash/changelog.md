@@ -1,3 +1,6 @@
+## Enhanced Drop Dash - Version 2.4.1
+- Added signature caching (speeds up boot times).
+
 ## Enhanced Drop Dash - Version 2.4.0
 - Added an option to roll cancel via quick stepping.
 
