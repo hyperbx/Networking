@@ -1,3 +1,6 @@
+## Disable Skills - Version 1.0.4
+- Fixes for Sonic Frontiers v1.30.
+
 ## Disable Skills - Version 1.0.3
 - Added signature caching (speeds up boot times).
 
