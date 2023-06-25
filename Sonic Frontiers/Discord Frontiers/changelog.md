@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 1.1.6
+- Fixes for Sonic Frontiers v1.30.
+
 ## Discord Frontiers - Version 1.1.5
 - Added signature caching (speeds up boot times).
 
