@@ -1,3 +1,7 @@
+## Disable Skills - Version 1.0.5
+- Fixed Sonic Boom not being disabled.
+- Fixed being unable to charge a Spin Dash when locked onto nearby objects with Sonic Boom disabled.
+
 ## Disable Skills - Version 1.0.4
 - Fixes for Sonic Frontiers v1.30.
 
