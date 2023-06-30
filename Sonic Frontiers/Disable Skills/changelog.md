@@ -1,3 +1,6 @@
+## Disable Skills - Version 1.0.6
+- Fixed Sonic Boom warping and freezing Sonic in mid-air when disabled.
+
 ## Disable Skills - Version 1.0.5
 - Fixed Sonic Boom not being disabled.
 - Fixed being unable to charge a Spin Dash in the air when locked onto nearby objects with Sonic Boom disabled.
