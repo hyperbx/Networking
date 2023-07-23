@@ -1,3 +1,7 @@
+## Enhanced Moveset - Version 3.0.0-liteR2
+- Fixed being unable to jump out of Drop Dash without the Somersault Landing at High Velocity code being enabled.
+- Added the ability to cancel Drop Dash into Air Tricks when pressing the slide button in the air.
+
 ## Enhanced Moveset - Version 3.0.0-lite
 - **This is a work-in-progress version of Enhanced Moveset, the new direction for Enhanced Drop Dash.**
 - **This build features a limited selection of new additions to Enhanced Moveset**, these are subject to change or have been limited until the final release.

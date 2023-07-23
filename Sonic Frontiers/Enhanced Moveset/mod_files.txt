@@ -1,1 +1,4 @@
+add EnhancedMoveset.ini
+add EnhancedMoveset.json
+add EnhancedMovesetLite.dll
 add mod.ini
