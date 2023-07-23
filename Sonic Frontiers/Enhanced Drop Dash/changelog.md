@@ -1,6 +1,6 @@
 ## Enhanced Moveset - Version 3.0.0-lite
 - **This is a work-in-progress version of Enhanced Moveset, the new direction for Enhanced Drop Dash.**
-- **This build features a limited selection of new additions to Enhanced Movement**, these are subject to change or have been limited until the final release.
+- **This build features a limited selection of new additions to Enhanced Moveset**, these are subject to change or have been limited until the final release.
 - Notable new additions;
   - **Air Tricks:** performing Air Tricks will now reward Sonic with boost, this is a complete feature, but is mainly intended for use with something coming in the final release.
   - **Spin Boost:** added the option to always start tricks when exiting out of Spin Boost whilst ungrounded, as well as the ability to uncurl immediately when releasing LT to spam Spin Boost in succession. There's a lot more to come in the final release.
