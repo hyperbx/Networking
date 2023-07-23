@@ -1,3 +1,7 @@
+## Enhanced Moveset - Version 3.0.0-liteR3
+- Fixed uncurling animation causing Sonic to remain in the idle pose when activated on steep angles.
+- Changed the Allow Air Trick Cancel option for Drop Dash to allow you to select a view for it to work in (e.g. 2D, 3D, both).
+
 ## Enhanced Moveset - Version 3.0.0-liteR2
 - Fixed being unable to jump out of Drop Dash without the Somersault Landing at High Velocity code being enabled.
 - Added the ability to cancel Drop Dash into Air Tricks when pressing the slide button in the air.

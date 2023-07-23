@@ -150,15 +150,15 @@
 			"Elements":
 			[
 				{
-					"Name": "IsDropDashAirTrickCancel",
+					"Name": "DropDashAirTrickCancel",
 					"DisplayName": "Allow Air Trick Cancel",
 					"Description":
 					[
 						"Allows Sonic to perform Air Tricks when pressing the slide button whilst in the air.\n",
-						"Default: True"
+						"Default: 3D only"
 					],
-					"Type": "bool",
-					"DefaultValue": true
+					"Type": "EViewType",
+					"DefaultValue": 2
 				},
 				{
 					"Name": "IsDropDashCancelWhenUngrounded",
@@ -622,6 +622,41 @@
 					"The \"Disable Ground Camera\" option is recommended with this control scheme."
 				],
 				"Value": "1"
+			}
+		],
+		"EViewType": 
+		[
+			{
+				"DisplayName": "Disabled",
+				"Description":
+				[
+					"Disables this action."
+				],
+				"Value": "0"
+			},
+			{
+				"DisplayName": "2D only",
+				"Description":
+				[
+					"This action is only available in 2D."
+				],
+				"Value": "1"
+			},
+			{
+				"DisplayName": "3D only",
+				"Description":
+				[
+					"This action is only available in 3D."
+				],
+				"Value": "2"
+			},
+			{
+				"DisplayName": "Always",
+				"Description":
+				[
+					"This action is always available."
+				],
+				"Value": "3"
 			}
 		],
 		"EWorldType":
