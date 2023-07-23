@@ -1,3 +1,5 @@
+add info.ini
 add mod.ini
-add EnhancedDropDash.dll
-add EnhancedDropDash.json
+add EnhancedMoveset.ini
+add EnhancedMoveset.json
+add EnhancedMovesetLite.dll
