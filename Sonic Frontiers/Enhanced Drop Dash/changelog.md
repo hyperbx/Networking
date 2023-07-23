@@ -8,6 +8,7 @@
   - **Spin Move:** added enhanced physics that allow Sonic to naturally roll down slopes, this can be activated via LT from a standstill in this build, but there will be other ways of activation in the final release.
 - Air Dash and Quick Stomp Dash remain unchanged from Enhanced Drop Dash.
 - Stomp Dash has been removed in favour of Sonic Team's addition of stomping through Spin Charge.
+- You can now configure the mod whilst the game is running and see your changes live.
 
 ## Enhanced Drop Dash - Version 2.4.1
 - Added signature caching (speeds up boot times).
