@@ -33,14 +33,25 @@
 					"DefaultValue": 0
 				},
 				{
-					"Name": "AirDashUncurlType",
-					"DisplayName": "Uncurl Type",
+					"Name": "AirDashUncurlTypeSV",
+					"DisplayName": "Uncurl Type (2D)",
 					"Description":
 					[
-						"The behaviour of Drop Dash rolling when initiating it from the Air Dash.\n",
+						"The behaviour of Drop Dash rolling when initiating it from the Air Dash in 2D areas.\n",
 						"Default: None"
 					],
-					"Type": "ECommonUncurlType",
+					"Type": "EUncurlType",
+					"DefaultValue": 0
+				},
+				{
+					"Name": "AirDashUncurlType",
+					"DisplayName": "Uncurl Type (3D)",
+					"Description":
+					[
+						"The behaviour of Drop Dash rolling when initiating it from the Air Dash in 3D areas.\n",
+						"Default: None"
+					],
+					"Type": "EUncurlType",
 					"DefaultValue": 0
 				},
 				{
@@ -141,7 +152,7 @@
 					"Type": "float",
 					"MinValue": 0.0,
 					"DefaultValue": 75.0
-				},
+				}
 			]
 		},
 		{
@@ -155,6 +166,7 @@
 					"Description":
 					[
 						"Allows Sonic to perform Air Tricks when pressing the slide button whilst in the air.\n",
+						"This will not work in Cyber Space without at least the \"Enable Flinging from Terrain in Cyber Space\" code enabled.\n",
 						"Default: 3D only"
 					],
 					"Type": "EViewType",
@@ -272,6 +284,7 @@
 					[
 						"Allows Sonic to always trick when exiting out of Spin Boost whilst in the air.\n",
 						"This also fixes Sonic losing all momentum on exit when the analog stick is not neutral.\n",
+						"This will not work in Cyber Space without the \"Enable Air Tricks in Cyber Space\" code enabled.\n",
 						"Default: True"
 					],
 					"Type": "bool",
@@ -391,7 +404,7 @@
 					"DisplayName": "Vibration",
 					"Description":
 					[
-						"Enables controller vibration when charging a Spin Dash.\n",
+						"Toggles controller vibration when charging a Spin Dash.\n",
 						"This supports the Xbox One and DualSense trigger motors.\n",
 						"For full support, please install the Xbox Extended Feature Support Driver via Steam.\n",
 						"Default: True"
@@ -462,14 +475,25 @@
 					"DefaultValue": 2
 				},
 				{
-					"Name": "QuickStompDashUncurlType",
-					"DisplayName": "Uncurl Type",
+					"Name": "QuickStompDashUncurlTypeSV",
+					"DisplayName": "Uncurl Type (2D)",
 					"Description":
 					[
-						"The behaviour of Drop Dash rolling when initiating it from the Quick Stomp Dash.\n",
+						"The behaviour of Drop Dash rolling when initiating it from the Quick Stomp Dash in 2D areas.\n",
 						"Default: None"
 					],
-					"Type": "ECommonUncurlType",
+					"Type": "EUncurlType",
+					"DefaultValue": 0
+				},
+				{
+					"Name": "QuickStompDashUncurlType",
+					"DisplayName": "Uncurl Type (3D)",
+					"Description":
+					[
+						"The behaviour of Drop Dash rolling when initiating it from the Quick Stomp Dash in 3D areas.\n",
+						"Default: None"
+					],
+					"Type": "EUncurlType",
 					"DefaultValue": 0
 				},
 				{
@@ -568,7 +592,7 @@
 				"Value": "3"
 			}
 		],
-		"ECommonUncurlType": 
+		"EUncurlType": 
 		[
 			{
 				"DisplayName": "None",
@@ -583,7 +607,7 @@
 				"Description":
 				[
 					"Immediately uncurls when entering the state. This is useful if you have the Air Trick skill unlocked.\n",
-					"This will revert to None in Cyber Space."
+					"This will not work in Cyber Space without at least the \"Enable Flinging from Terrain in Cyber Space\" code enabled."
 				],
 				"Value": "1"
 			},
