@@ -1,3 +1,6 @@
+## Score Generations - Version 1.4.6
+- Fixes for HE1ML.
+
 ## Score Generations - Version 1.4.5
 - Implemented E rank requirements for custom HUDs.
 - Fixed irregularities with Restore Last Checkpoint Score when restarting the stage whilst dead.
