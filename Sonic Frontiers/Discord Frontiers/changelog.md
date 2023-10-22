@@ -1,3 +1,14 @@
+## Discord Frontiers - Version 2.0.0
+- Fixes for Sonic Frontiers v1.40.
+- Added support for tracking additional Update 3 content.
+- Added support for tracking Battle Rush.
+- Added support for tracking custom Cyber Space levels.
+- Added support for tracking Cyber Space Challenge.
+- Added support for tracking Master Trials.
+- Added support for tracking the current player character.
+- Added support for tracking the current super form.
+- Improved reliability with tracking the current stage.
+
 ## Discord Frontiers - Version 1.1.6
 - Fixes for Sonic Frontiers v1.30.
 

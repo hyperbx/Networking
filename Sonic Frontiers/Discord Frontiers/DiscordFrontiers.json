@@ -7,7 +7,7 @@
 			"Elements":
 			[
 				{
-					"Name": "language",
+					"Name": "Language",
 					"DisplayName": "Language",
 					"Type": "LanguageType",
 					"DefaultValue": "English"
@@ -32,7 +32,7 @@
 				"Value": "it-IT"
 			},
 			{
-				"DisplayName": "Dutch (Netherlands)",
+				"DisplayName": "Dutch (Netherlands) (86%)",
 				"Value": "nl-NL"
 			},
 			{
