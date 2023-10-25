@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 2.0.1
+- Fixed text for the small image sometimes not appearing and displaying the game name, rather than the current player character name.
+
 ## Discord Frontiers - Version 2.0.0
 - Fixes for Sonic Frontiers v1.40.
 - Added support for tracking additional Update 3 content.
