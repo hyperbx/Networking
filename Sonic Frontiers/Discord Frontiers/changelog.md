@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 2.0.2
+- Updated CommonLoader for new HE2ML location.
+
 ## Discord Frontiers - Version 2.0.1
 - Fixed text for the small image sometimes not appearing and displaying the game name, rather than the current player character name.
 
