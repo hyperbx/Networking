@@ -13996,7 +13996,7 @@ Patch "Hide Boost Gauge" in "UI/Display" by "Hyper"
         0xEB
     );
 }
-Patch "Hide Skill Piece Transition" in "UI/Display" by "Hyper" does "Removes the transition when picking up skill pieces to put them into the skill points display."
+Patch "Hide Skill Piece Transitions" in "UI/Displays" by "Hyper" does "Removes the transition when picking up skill pieces to put them into the skill points display."
 {
     WriteNop
     (
