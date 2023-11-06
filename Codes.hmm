@@ -25383,7 +25383,7 @@ Patch "Disable Drop Dash Turning Delay 2" in "Physics/Sonic" by "Hyper" does "Di
             "\x73\x19\x48\x8B\x47\x40",
             "xxxxxx"
         ),
-
+ 
         2
     );
 }
