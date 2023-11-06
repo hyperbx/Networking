@@ -25,7 +25,7 @@ Library "HMM" by "Hyper"
     public List<Mod> GetMods()
     {
         List<Mod> result = new();
- 
+
         var modsDb = GetModsDatabase();
 
         if (modsDb == null)
@@ -13996,7 +13996,7 @@ Patch "Hide Boost Gauge" in "UI/Display" by "Hyper"
         0xEB
     );
 }
-Patch "Hide Skill Piece Transitions" in "UI/Displays" by "Hyper" does "Removes the transition when picking up skill pieces to put them into the skill points display."
+Patch "Hide Skill Piece Transition" in "UI/Display" by "Hyper" does "Removes the transition when picking up skill pieces to put them into the skill points display."
 {
     WriteNop
     (
@@ -25372,6 +25372,20 @@ Code "Retain Velocity When Jumping Up Slopes" in "Physics/Sonic" by "Weezley" do
         return;
 
     RFL_SET_PARAM(SonicParametersInfo, forwardView.modePackage.jumpSpeed.limitUpSpeed, 40.0f);
+}
+Patch "Disable Drop Dash Turning Delay 2" in "Physics/Sonic" by "Hyper" does "Disables the out of control timer that determines when Sonic can start turning whilst drop dashing." 
+{
+    WriteNop
+    (
+        /* 0x14084323B */
+        ScanSignature
+        (
+            "\x73\x19\x48\x8B\x47\x40",
+            "xxxxxx"
+        ),
+
+        2
+    );
 }
 Patch "Disable Drop Dash Turning Delay" in "Physics/Sonic" by "Hyper" does "Disables the out of control timer that determines when Sonic can start turning whilst drop dashing." 
 {
