@@ -1,0 +1,1294 @@
+Library "Bitwise" by "Hyper" 
+{
+    public long Set(long in_base, int in_offset, bool in_isOffsetBitIndex = true)
+    {
+        return in_base | (in_isOffsetBitIndex ? (1L << in_offset) : in_offset);
+    }
+
+    public long Reset(long in_base, int in_offset, bool in_isOffsetBitIndex = true)
+    {
+        return in_base & (in_isOffsetBitIndex ? ~(1L << in_offset) : in_offset);
+    }
+
+    public bool Test(long in_base, int in_offset, bool in_isOffsetBitIndex = true)
+    {
+        return (in_base & (in_isOffsetBitIndex ? (1L << in_offset) : in_offset)) != 0;
+    }
+}
+Library "HMM" by "Hyper"
+{
+    #lib "INI"
+
+    using System.Collections.Generic;
+    using System.IO;
+
+    public Dictionary<string, Dictionary<string, string>> GetModsDatabase()
+    {
+        string workingDir = Directory.GetCurrentDirectory();
+        string cpkredirCfgPath = Path.Combine(workingDir, "cpkredir.ini");
+
+        if (!File.Exists(cpkredirCfgPath))
+            return new();
+
+        var cpkredirCfg = INI.Read(cpkredirCfgPath);
+        string modsDbPath = cpkredirCfg["CPKREDIR"]["ModsDbIni"];
+
+        if (!File.Exists(modsDbPath))
+            return new();
+
+        return INI.Read(modsDbPath);
+    }
+
+    public List<Mod> GetMods()
+    {
+        List<Mod> result = new();
+
+        var modsDb = GetModsDatabase();
+
+        if (modsDb == null)
+            return result;
+
+        int activeModCount = INI.Parse<int>(modsDb["Main"]["ActiveModCount"], 0);
+
+        foreach (var entry in modsDb["Mods"].Keys)
+        {
+            for (int i = 0; i < activeModCount; i++)
+            {
+                if (modsDb["Main"][$"ActiveMod{i}"].Contains(entry))
+                {
+                    result.Add(new Mod(modsDb["Mods"][entry]));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public Mod GetModByID(string in_id)
+    {
+        foreach (var mod in GetMods())
+        {
+            if (mod.ID == in_id)
+                return mod;
+        }
+
+        return null;
+    }
+
+    public List<Mod> FindModsByName(string name)
+    {
+        List<Mod> result = new();
+
+        foreach (var mod in GetMods())
+        {
+            if (mod.Name.Contains(name))
+            {
+                result.Add(mod);
+            }
+        }
+
+        return result;
+    }
+
+    public List<string> GetCodes()
+    {
+        List<string> result = new();
+
+        var modsDb = GetModsDatabase();
+
+        if (modsDb == null)
+            return result;
+
+        foreach (var value in modsDb["Codes"].Values)
+            result.Add(value);
+
+        return result;
+    }
+
+    public class Mod
+    {
+        public string Name { get; set; } = string.Empty;
+
+        public string Version { get; set; } = string.Empty;
+
+        public string Author { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+
+        public string Date { get; set; } = string.Empty;
+
+        public string AuthorURL { get; set; } = string.Empty;
+
+        public string UpdateServer { get; set; } = string.Empty;
+
+        public string SaveFile { get; set; } = string.Empty;
+
+        public string ID { get; set; } = string.Empty;
+
+        public List<string> IncludeDirs { get; set; } = new();
+
+        public List<ModDependency> Dependencies { get; set; } = new();
+
+        public string DLLFile { get; set; } = string.Empty;
+
+        public string CodeFile { get; set; } = string.Empty;
+
+        public string ConfigSchemaFile { get; set; } = string.Empty;
+
+        public string Path { get; set; } = string.Empty;
+
+        public Dictionary<string, Dictionary<string, string>> Ini { get; set; } = new();
+
+        public Mod(string modIniPath)
+        {
+            var ini = INI.Read(modIniPath);
+
+            if (ini == null)
+                return;
+
+            Name             = INI.GetField<string>(ini, "Desc", "Title", Name);
+            Version          = INI.GetField<string>(ini, "Desc", "Version", Version);
+            Author           = INI.GetField<string>(ini, "Desc", "Author", Author);
+            Description      = INI.GetField<string>(ini, "Desc", "Description", Description);
+            Date             = INI.GetField<string>(ini, "Desc", "Date", Date);
+            AuthorURL        = INI.GetField<string>(ini, "Desc", "AuthorURL", AuthorURL);
+            UpdateServer     = INI.GetField<string>(ini, "Main", "UpdateServer", UpdateServer);
+            SaveFile         = INI.GetField<string>(ini, "Main", "SaveFile", SaveFile);
+            ID               = INI.GetField<string>(ini, "Main", "ID", ID);
+            DLLFile          = INI.GetField<string>(ini, "Main", "DLLFile", DLLFile);
+            CodeFile         = INI.GetField<string>(ini, "Main", "CodeFile", CodeFile);
+            ConfigSchemaFile = INI.GetField<string>(ini, "Main", "ConfigSchemaFile", ConfigSchemaFile);
+
+            Path             = System.IO.Path.GetDirectoryName(modIniPath);
+            Ini              = ini;
+
+            int includeDirCount = INI.GetField<int>(ini, "Main", "IncludeDirCount", 1);
+
+            for (int i = 0; i < includeDirCount; i++)
+                IncludeDirs.Add(INI.GetField<string>(ini, "Main", $"IncludeDir{i}", "."));
+
+            int dependencyCount = INI.GetField<int>(ini, "Main", "DependsCount", 0);
+
+            for (int i = 0; i < dependencyCount; i++)
+                Dependencies.Add(new ModDependency(INI.GetField<string>(ini, "Main", $"Depends{i}", "")));
+        }
+    }
+
+    public class ModDependency
+    {
+        public string ID { get; set; }
+
+        public string Name { get; set; }
+        
+        public string Link { get; set; }
+
+        public string Version { get; set; }
+
+        public ModDependency(string in_id, string in_name, string in_link, string in_version)
+        {
+            ID = in_id;
+            Name = in_name;
+            Link = in_link;
+            Version = in_version;
+        }
+
+        public ModDependency(string in_csv)
+        {
+            var fields = in_csv.Split('|');
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        ID = fields[i];
+                        break;
+
+                    case 1:
+                        Name = fields[i];
+                        break;
+
+                    case 2:
+                    {
+                        if (fields.Length > 2)
+                        {
+                            Link = fields[i];
+                        }
+                        else
+                        {
+                            Version = fields[i];
+                        }
+
+                        break;
+                    }
+
+                    case 3:
+                        Version = fields[i];
+                        break;
+                }
+            }
+        }
+    }
+}
+Library "INI" by "Hyper"
+{
+    using System.Collections.Generic;
+    using System.IO;
+    
+    public Dictionary<string, Dictionary<string, string>> Read(string path)
+    {
+        Dictionary<string, Dictionary<string, string>> result = new();
+
+        if (!File.Exists(path))
+            return result;
+
+        using (StreamReader reader = new StreamReader(path))
+        {
+            string section = string.Empty;
+            string line = string.Empty;
+
+            // Add root section.
+            result.Add(section, new Dictionary<string, string>());
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                if (line.StartsWith("[") && line.EndsWith("]"))
+                {
+                    section = line.Substring(1, line.Length - 2);
+                    result.Add(section, new Dictionary<string, string>());
+                    continue;
+                }
+
+                if (line.StartsWith(";") || line.StartsWith("#"))
+                    continue;
+
+                int delimiterIndex = line.IndexOf('=');
+
+                if (delimiterIndex == -1)
+                    continue;
+
+                string key = line.Substring(0, delimiterIndex);
+                string value = line.Substring(delimiterIndex + 1);
+
+                if (value.StartsWith("\"") && value.EndsWith("\"") && value.Length > 1)
+                    value = value.Substring(1, value.Length - 2);
+                
+                result[section].Add(key, value);
+            }
+        }
+
+        return result;
+    }
+
+    public T Parse<T>(string in_value, T in_defaultValue)
+    {
+        T result = in_defaultValue;
+
+        if (typeof(T) == typeof(string))
+        {
+            result = (T)(object)in_value;
+        }
+        else if (typeof(T) == typeof(int))
+        {
+            if (int.TryParse(in_value, out int intValue))
+            {
+                result = (T)(object)intValue;
+            }
+        }
+        else if (typeof(T) == typeof(double))
+        {
+            if (double.TryParse(in_value, out double doubleValue))
+            {
+                result = (T)(object)doubleValue;
+            }
+        }
+        else if (typeof(T) == typeof(float))
+        {
+            if (float.TryParse(in_value, out float floatValue))
+            {
+                result = (T)(object)floatValue;
+            }
+        }
+
+        return result;
+    }
+
+    public T GetField<T>(Dictionary<string, Dictionary<string, string>> in_ini, string in_section, string in_key, T in_defaultValue)
+    {
+        if (!in_ini.ContainsKey(in_section))
+            return in_defaultValue;
+
+        if (!in_ini[in_section].ContainsKey(in_key))
+            return in_defaultValue;
+
+        return Parse<T>(in_ini[in_section][in_key], in_defaultValue);
+    }
+}
+Library "Logger" by "Hyper"
+{
+    #define PRINT_OBJECT(obj, format, caller) Logger.Utility(#obj + " = " + obj.ToString(format), caller);
+    #define PRINT_OBJECT(obj, format) Logger.Utility(#obj + " = " + obj.ToString(format));
+
+    public enum LogLevel
+    {
+        None,
+        Utility,
+        Warning,
+        Error
+    }
+
+    public void Log(object message, LogLevel level = LogLevel.None, string caller = "")
+    {
+        var oldColour = Console.ForegroundColor;
+
+        switch (level)
+        {
+            case LogLevel.Warning:
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                break;
+
+            case LogLevel.Error:
+                Console.ForegroundColor = ConsoleColor.Red;
+                break;
+
+            case LogLevel.Utility:
+                Console.ForegroundColor = ConsoleColor.Green;
+                break;
+        }
+
+        Console.WriteLine(string.IsNullOrEmpty(caller) ? message.ToString() : $"[{caller}] {message}");
+
+        Console.ForegroundColor = oldColour;
+    }
+
+    public void Utility(object message, string caller = "")
+    {
+        Log(message, LogLevel.Utility, caller);
+    }
+
+    public void Warning(object message, string caller = "")
+    {
+        Log(message, LogLevel.Warning, caller);
+    }
+
+    public void Error(object message, string caller = "")
+    {
+        Log(message, LogLevel.Error, caller);
+    }
+}
+Library "MathHelpers" by "Hyper" 
+{
+    using System.Collections.Generic;
+
+    public T Clamp<T>(T in_value, T in_minValue, T in_maxValue) where T : IComparable<T>
+    {
+        if (in_value.CompareTo(in_minValue) < 0)
+        {
+            return in_minValue;
+        }
+        else if (in_value.CompareTo(in_maxValue) > 0)
+        {
+            return in_maxValue;
+        }
+        else
+        {
+            return in_value;
+        }
+    }
+
+    public T Clamp01<T>(T value) where T : IComparable<T>
+    {
+        if (value.CompareTo(default(T)) < 0)
+        {
+            return default(T);
+        }
+        else if (value.CompareTo((T)Convert.ChangeType(1, typeof(T))) > 0)
+        {
+            return (T)Convert.ChangeType(1, typeof(T));
+        }
+        else
+        {
+            return value;
+        }
+    }
+
+    public T FloatPercentToRange<T>(float in_value)
+    {
+        if (typeof(T) == typeof(sbyte))
+        {
+            return (T)(object)(byte)(in_value * (sbyte.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(byte))
+        {
+            return (T)(object)(byte)(in_value * (byte.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(short))
+        {
+            return (T)(object)(short)(in_value * (short.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(ushort))
+        {
+            return (T)(object)(ushort)(in_value * (ushort.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(int))
+        {
+            return (T)(object)(int)(in_value * (int.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(uint))
+        {
+            return (T)(object)(uint)(in_value * (uint.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(long))
+        {
+            return (T)(object)(long)(in_value * (long.MaxValue * 1.0f));
+        }
+        else if (typeof(T) == typeof(ulong))
+        {
+            return (T)(object)(ulong)(in_value * (ulong.MaxValue * 1.0f));
+        }
+        
+        return default;
+    }
+    
+    public float Lerp(float in_start, float in_end, float in_time)
+    {
+        return in_start + (in_end - in_start) * in_time;
+    }
+
+    public static float InverseLerp(float a, float b, float value)
+    {
+        if (a == b)
+            return 0.0f;
+
+        return Clamp01<float>((value - a) / (b - a));
+    }
+
+    public static float ToDegrees(float in_radians)
+    {
+        return in_radians * (180.0f / (float)Math.PI);
+    }
+
+    public static float ToRadians(float in_degrees)
+    {
+        return in_degrees * ((float)Math.PI / 180.0f);
+    }
+
+    public static float WrapToRadians(float in_value)
+    {
+        float sign = in_value > 0.0f ? 1.0f : -1.0f;
+        float mod = (float)Math.Abs(in_value) % 6.28319f;
+
+        return mod * sign;
+    }
+}
+Library "Memory" by "Hyper & Sajid" 
+{
+    using System.Collections.Generic;
+    using System.Runtime.InteropServices;
+    using System.Runtime.CompilerServices;
+    using System.Text;
+
+    private static Dictionary<nint, List<byte>> _preservedMemory = new();
+
+    public void Preserve(nint in_location, nint in_length, bool in_isPreservedOnce = true)
+    {
+        if (in_location == 0)
+            return;
+
+        if (in_isPreservedOnce)
+        {
+            if (_preservedMemory.ContainsKey(in_location))
+                return;
+        }
+        else
+        {
+            if (_preservedMemory.ContainsKey(in_location))
+                _preservedMemory.Remove(in_location);
+        }
+        
+        List<byte> buffer = new();
+        for (nint i = 0; i < in_length; i++)
+            buffer.Add(Read<byte>(in_location + i));
+
+        _preservedMemory.Add(in_location, buffer);
+    }
+
+    public void Preserve(long in_location, long in_length, bool in_isPreservedOnce = true)
+    {
+        Preserve((nint)in_location, (nint)in_length, in_isPreservedOnce);
+    }
+
+    public void Restore(nint in_location)
+    {
+        if (in_location == 0)
+            return;
+
+        if (!_preservedMemory.ContainsKey(in_location))
+            return;
+
+        nint i = 0;
+        foreach (byte b in _preservedMemory[in_location])
+        {
+            WriteProtected<byte>(in_location + i, b);
+            i++;
+        }
+    }
+
+    public void Restore(long in_location)
+    {
+        Restore((nint)in_location);
+    }
+
+    public nint ReadCall(nint in_location)
+    {
+        if (in_location == 0)
+            return 0;
+
+        return in_location + Read<int>(in_location + 0x01) + 0x05;
+    }
+
+    public long ReadCall(long in_location)
+    {
+        return (long)ReadCall((nint)in_location);
+    }
+
+    public nint ReadEffectiveAddress(nint in_location)
+    {
+        if (in_location == 0)
+            return 0;
+
+        return in_location + Read<int>(in_location + 0x03) + 0x07;
+    }
+
+    public long ReadEffectiveAddress(long in_location)
+    {
+        return (long)ReadEffectiveAddress((nint)in_location);
+    }
+
+    public enum JumpType : sbyte
+    {
+        Unknown = -1,
+        ShortCond,
+        NearJmp,
+        NearCond,
+        LongJmp
+    }
+
+    public JumpType ReadJumpOpcode(nint in_location)
+    {
+        JumpType result = JumpType.Unknown;
+
+        if (in_location == 0)
+            return result;
+
+        byte opcode = Read<byte>(in_location);
+
+        if ((opcode & 0xF0) == 0x70)
+        {
+            result = JumpType.ShortCond;
+        }
+        else
+        {
+            switch (opcode)
+            {
+                case 0xE3:
+                case 0xEB:
+                    result = JumpType.ShortCond;
+                    break;
+
+                case 0xE9:
+                    result = JumpType.NearJmp;
+                    break;
+
+                case 0x0F:
+                    result = JumpType.NearCond;
+                    break;
+
+                case 0xFF:
+                    result = JumpType.LongJmp;
+                    break;
+            }
+        }
+
+        return result;
+    }
+
+    public JumpType ReadJumpOpcode(long in_location)
+    {
+        return ReadJumpOpcode((nint)in_location);
+    }
+
+    public nint ReadJump(nint in_location)
+    {
+        if (in_location == 0)
+            return 0;
+
+        switch (ReadJumpOpcode(in_location))
+        {
+            case JumpType.ShortCond:
+                return in_location + Read<byte>(in_location + 0x01) + 0x02;
+
+            case JumpType.NearJmp:
+                return in_location + Read<int>(in_location + 0x01) + 0x05;
+
+            case JumpType.NearCond:
+                return in_location + Read<int>(in_location + 0x02) + 0x06;
+
+            case JumpType.LongJmp:
+                return (nint)Read<long>(in_location + 0x06);
+        }
+
+        return 0;
+    }
+
+    public long ReadJump(long in_location)
+    {
+        return (long)ReadJump((nint)in_location);
+    }
+
+    public void WriteForceJump(nint in_location)
+    {
+        if (in_location == 0)
+            return;
+        
+        switch (ReadJumpOpcode(in_location))
+        {
+            case JumpType.ShortCond:
+                WriteProtected<byte>(in_location, 0xEB);
+                break;
+
+            case JumpType.NearCond:
+                WriteProtected<byte>(in_location, 0xE9);
+                WriteProtected<int>(in_location + 0x01, Read<int>(in_location + 0x02) + 0x01);
+                break;
+        }
+    }
+
+    public void WriteForceJump(long in_location)
+    {
+        WriteForceJump((nint)in_location);
+    }
+
+    public nint ReadThunk(nint in_location, nint in_offset = 0)
+    {
+        return ReadJump(ReadCall(in_location) + in_offset);
+    }
+
+    public long ReadThunk(long in_location, long in_offset = 0)
+    {
+        return (long)ReadThunk((nint)in_location, (nint)in_offset);
+    }
+
+    public void WriteString(long in_location, string in_str, Encoding in_encoding)
+    {
+        WriteProtected<byte>(in_location, in_encoding.GetBytes(in_str));
+    }
+
+    public void WriteString(long in_location, string in_str)
+    {
+        WriteString(in_location, in_str, Encoding.ASCII);
+    }
+
+    public void PrintMemory<T>(IntPtr in_address, int in_rowCount) where T : unmanaged
+    {
+        for (int i = 0; i < in_rowCount * 16; i += 16)
+        {
+            Console.Write($"{(in_address + i).ToInt64():X16}: ");
+
+            if (typeof(T) == typeof(byte) || typeof(T) == typeof(sbyte))
+            {
+                for (int j = 0; j < 16; j++)
+                    Console.Write($"{Read<T>(in_address + i + j):X2} ");
+            }
+            else if (typeof(T) == typeof(short) || typeof(T) == typeof(ushort))
+            {
+                for (int j = 0; j < 16; j += 2)
+                    Console.Write($"{Read<T>(in_address + i + j):X4} ");
+            }
+            else if (typeof(T) == typeof(int) || typeof(T) == typeof(uint))
+            {
+                for (int j = 0; j < 16; j += 4)
+                    Console.Write($"{Read<T>(in_address + i + j):X8} ");
+            }
+            else if (typeof(T) == typeof(long) || typeof(T) == typeof(ulong))
+            {
+                for (int j = 0; j < 16; j += 8)
+                    Console.Write($"{Read<T>(in_address + i + j):X16} ");
+            }
+            else if (typeof(T) == typeof(float))
+            {
+                for (int j = 0; j < 16; j += 4)
+                    Console.Write($"{Read<float>(in_address + i + j)} ");
+            }
+            else if (typeof(T) == typeof(double))
+            {
+                for (int j = 0; j < 16; j += 8)
+                    Console.Write($"{Read<double>(in_address + i + j)} ");
+            }
+
+            Console.WriteLine();
+        }
+    }
+
+    public void PrintMemory(IntPtr in_address, int in_rowCount)
+    {
+        PrintMemory<byte>(in_address, in_rowCount);
+    }
+    
+    public struct Pointer<T> where T : unmanaged
+    {
+        public T* pData;
+
+        public Pointer(ref T data)
+        {
+            fixed(T* dataPtr = &data)
+            {
+                pData = dataPtr;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Pointer(T* in_pData)
+        {
+            pData = in_pData;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IsValid()
+        {
+            return pData != null;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ref T Ref()
+        {
+            return ref *pData;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public T* Get()
+        {
+            return pData;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator bool(Pointer<T> self) => self.IsValid();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Pointer<T>(T* data) => new(data);
+
+        public override string ToString() => $"0x{((long)pData):X}";
+    }
+}
+Library "VectorHelpers" by "Hyper" 
+{
+    #load "System.Numerics.dll"
+
+    using System.Numerics;
+
+    public static Vector3 ClampMagnitude(Vector3 in_vector, float in_maxMagnitude)
+    {
+        if (in_vector.Length() > in_maxMagnitude * in_maxMagnitude)
+            return Vector3.Normalize(in_vector) * in_maxMagnitude;
+
+        return in_vector;
+    }
+
+    public static Vector3 GetForward(Quaternion in_rotation)
+    {
+        return Vector3.Transform(Vector3.UnitZ, Quaternion.Normalize(in_rotation));
+    }
+
+    public static float GetMagnitude(Vector3 in_velocity)
+    {
+        return in_velocity.Length();
+    }
+
+    public static float GetHorizontalMagnitude(Vector3 in_velocity)
+    {
+        return (float)Math.Sqrt(in_velocity.X * in_velocity.X + in_velocity.Z * in_velocity.Z);
+    }
+
+    public static float GetVerticalMagnitude(Vector3 in_velocity)
+    {
+        return in_velocity.Y;
+    }
+
+    public static Quaternion LookRotation(Vector3 in_forward, Vector3 in_upward)
+    {
+        in_forward = Vector3.Normalize(in_forward);
+        in_upward = Vector3.Normalize(in_upward);
+
+        var right = Vector3.Cross(in_upward, in_forward);
+        in_upward = Vector3.Cross(in_forward, right);
+
+        var m = new Matrix4x4
+        (
+            right.X,      right.Y,      right.Z,      0.0f,
+            in_upward.X,  in_upward.Y,  in_upward.Z,  0.0f,
+            in_forward.X, in_forward.Y, in_forward.Z, 0.0f,
+            0.0f,         0.0f,         0.0f,         1.0f
+        );
+
+        return Quaternion.CreateFromRotationMatrix(m);
+    }
+
+    public static Quaternion LookRotation(Vector3 in_forward)
+    {
+        return LookRotation(in_forward, Vector3.UnitY);
+    }
+}
+Library "XInput" by "Hyper" 
+{
+    #lib "MathHelpers"
+
+    #load "System.Numerics.dll"
+
+    using System.Numerics;
+    using System.Runtime.InteropServices;
+
+    [DllImport("xinput1_4.dll", EntryPoint = "XInputGetState")]
+    public extern int XInputGetState(int in_dwUserIndex, ref State in_pState);
+    
+    [DllImport("xinput1_4.dll", EntryPoint = "XInputSetState")]
+    public extern int XInputSetState(int in_dwUserIndex, ref Vibration in_pVibration);
+
+    public const short XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE = 7849;
+    public const short XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE = 8689;
+
+    private static float _leftMotorSpeed = 0.0f;
+    private static float _rightMotorSpeed = 0.0f;
+
+    [Flags]
+    public enum Buttons : ushort
+    {
+        DPAD_UP        = 0x0001,
+        DPAD_DOWN      = 0x0002,
+        DPAD_LEFT      = 0x0004,
+        DPAD_RIGHT     = 0x0008,
+        START          = 0x0010,
+        BACK           = 0x0020,
+        LEFT_THUMB     = 0x0040,
+        RIGHT_THUMB    = 0x0080,
+        LEFT_SHOULDER  = 0x0100,
+        RIGHT_SHOULDER = 0x0200,
+        A              = 0x1000,
+        B              = 0x2000,
+        X              = 0x4000,
+        Y              = 0x8000
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct State
+    {
+        public int dwPacketNumber;
+        public Gamepad Gamepad;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Gamepad
+    {
+        public Buttons wButtons;
+        public byte bLeftTrigger;
+        public byte bRightTrigger;
+        public short sThumbLX;
+        public short sThumbLY;
+        public short sThumbRX;
+        public short sThumbRY;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Vibration
+    {
+        public ushort wLeftMotorSpeed;
+        public ushort wRightMotorSpeed;
+
+        public Vibration(ushort in_leftMotorSpeed, ushort in_rightMotorSpeed)
+        {
+            wLeftMotorSpeed = in_leftMotorSpeed;
+            wRightMotorSpeed = in_rightMotorSpeed;
+
+            _leftMotorSpeed = in_leftMotorSpeed / 65535.0f;
+            _rightMotorSpeed = in_rightMotorSpeed / 65535.0f;
+        }
+
+        public Vibration(float in_leftMotorSpeed, float in_rightMotorSpeed)
+        {
+            wLeftMotorSpeed = MathHelpers.FloatPercentToRange<ushort>(in_leftMotorSpeed);
+            wRightMotorSpeed = MathHelpers.FloatPercentToRange<ushort>(in_rightMotorSpeed);
+
+            _leftMotorSpeed = in_leftMotorSpeed;
+            _rightMotorSpeed = in_rightMotorSpeed;
+        }
+
+        public Vibration(ushort in_motorSpeed)
+        {
+            wLeftMotorSpeed = wRightMotorSpeed = in_motorSpeed;
+            _leftMotorSpeed = _rightMotorSpeed = in_motorSpeed / 65535.0f;
+        }
+
+        public Vibration(float in_motorSpeed)
+        {
+            wLeftMotorSpeed = wRightMotorSpeed = MathHelpers.FloatPercentToRange<ushort>(in_motorSpeed);
+            _leftMotorSpeed = _rightMotorSpeed = in_motorSpeed;
+        }
+    }
+
+    public State? GetState()
+    {
+        var pState = new State();
+
+        if (XInputGetState(0, ref pState) != 0)
+            return null;
+
+        return pState;
+    }
+
+    public void SetState(Vibration in_vibration)
+    {
+        XInputSetState(0, ref in_vibration);
+    }
+
+    public Vector2 GetAnalog(int in_analogIndex, bool in_isTestDeadzone = true)
+    {
+        var pState = GetState();
+
+        if (pState == null)
+            return Vector2.Zero;
+
+        Vector2 v = Vector2.Zero;
+
+        switch (in_analogIndex)
+        {
+            case 0:
+                v = new Vector2(pState.Value.Gamepad.sThumbLX / 32767.0f, pState.Value.Gamepad.sThumbLY / 32767.0f);
+                break;
+
+            case 1:
+                v = new Vector2(pState.Value.Gamepad.sThumbRX / 32767.0f, pState.Value.Gamepad.sThumbRY / 32767.0f);
+                break;
+        }
+
+        if (in_isTestDeadzone)
+        {
+            v = IsAnalogNeutral(in_analogIndex)
+                ? Vector2.Zero
+                : v;
+        }
+
+        return v;
+    }
+
+    // Use Player.Input for keyboard parity!
+    public bool IsButtonDown(Buttons in_buttons)
+    {
+        var pState = GetState();
+
+        if (pState == null)
+            return false;
+
+        return (pState.Value.Gamepad.wButtons & in_buttons) != 0;
+    }
+
+    public float GetTrigger(int in_triggerIndex)
+    {
+        var pState = GetState();
+
+        if (pState == null)
+            return 0;
+
+        switch (in_triggerIndex)
+        {
+            case 0:
+                return pState.Value.Gamepad.bLeftTrigger / 255.0f;
+
+            case 1:
+                return pState.Value.Gamepad.bRightTrigger / 255.0f;
+        }
+
+        return 0;
+    }
+
+    public bool IsAnalogNeutral(int in_analogIndex)
+    {
+        var pState = GetState();
+
+        if (pState == null)
+            return true;
+
+        switch (in_analogIndex)
+        {
+            case 0:
+            {
+                short x = pState.Value.Gamepad.sThumbLX;
+                short y = pState.Value.Gamepad.sThumbLY;
+
+                return x < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
+                    x > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
+                    y < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
+                    y > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+            }
+
+            case 1:
+            {
+                short x = pState.Value.Gamepad.sThumbRX;
+                short y = pState.Value.Gamepad.sThumbRY;
+
+                return x < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+                    x > -XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+                    y < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+                    y > -XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
+            }
+        }
+
+        return true;
+    }
+
+    public Vibration GetVibration()
+    {
+        return new Vibration(_leftMotorSpeed, _rightMotorSpeed);
+    }
+
+    public void SetVibration(float in_value)
+    {
+        SetState(new Vibration(in_value));
+    }
+
+    public void SetVibration(int in_motorIndex, float in_value)
+    {
+        switch (in_motorIndex)
+        {
+            case 0:
+            {
+                SetState(new Vibration(in_value, _rightMotorSpeed));
+                break;
+            }
+
+            case 1:
+            {
+                SetState(new Vibration(_leftMotorSpeed, in_value));
+                break;
+            }
+        }
+    }
+}
+
+
+
+Patch "Disable Timer" in "Cheats" by "CodenameGamma" 
+WriteNop(0x14017EE5A, 5)
+
+
+
+Patch "360 Degree Movement" in "Gameplay" by "Skyth" 
+WriteNop(0x1404615B7, 4)
+
+
+
+Patch "Disable Dash Panels" in "Gameplay" by "SuperSonic16" 
+WriteProtected<byte>(0x14046F9A0, 0xC3)
+
+
+
+Patch "Always Ready Wispon Special" in "Cheats/Player" by "CodenameGamma" 
+WriteProtected<byte>(0x1423C060C, 0x01)
+
+
+
+Patch "Disable Damage" in "Cheats/Player" by "SuperSonic16" 
+WriteProtected<byte>(0x14046E1E0, 0xC3)
+
+
+
+Patch "Disable Ring Invulnerability" in "Cheats/Player" by "SuperSonic16" does "Disables the player being invulnerable with at least one ring."
+WriteNop(0x14046E4EE, 0x06)
+
+
+
+Patch "Disable Ring Loss from Damage" in "Cheats/Player" by "CodenameGamma" 
+WriteNop(0x1404F77AC, 5)
+
+
+
+Patch "Disable Ring Loss from Super Sonic" in "Cheats/Player" by "SuperSonic16" does "Disables losing a ring every second as Super Sonic."
+WriteNop(0x1404E1F54, 0x03)
+
+
+
+Patch "Disable Wispon Boundaries" in "Cheats/Player" by "CodenameGamma" does "Disables the boundaries that prevent usage of certain Wispons in some areas of the stages."
+WriteNop(0x140267527, 0x00000005)
+
+
+
+Patch "Enable Super Sonic with 1 Ring" in "Cheats/Player" by "SuperSonic16" 
+WriteProtected<uint>(0x1404E1E8F, 0x4890C931)
+WriteProtected<byte>(0x1404E1E9B, 0x7E)
+
+
+
+Patch "Infinite Boost Gauge" in "Cheats/Player" by "CodenameGamma" 
+WriteNop(0x1404CFD62, 0x00000005)
+WriteNop(0x1403DF93E, 0x00000007)
+
+
+
+Patch "Infinite Rings" in "Cheats/Player" by "SuperSonic16" 
+WriteProtected<uint>(0x1403DA766, 0x0010BBE9)
+WriteProtected<ushort>(0x1403DA76A, 0x9000)
+WriteProtected<uint>(0x1403DB826, 0x0003E7B9)
+WriteProtected<uint>(0x1403DB82A, 0x1C488900)
+WriteProtected<uint>(0x1403DB82E, 0xE9CF4D89)
+WriteProtected<uint>(0x1403DB832, 0xFFFFEF36)
+
+
+
+Patch "Infinite Wispon Gauge" in "Cheats/Player" by "CodenameGamma" 
+WriteNop(0x1404D228C, 0x00000004)
+
+
+
+Patch "Adjust Aspect Ratio to Resolution" in "Graphics/Display" by "Muzzarino Hezibeth" does "Dynamically adjusts the aspect ratio and field of view to match the game resolution (recommended for ultrawide)." 
+WriteProtected<float>(0x141DBED94, 1.7777777777777778f)
+WriteProtected<float>(0x14086BBE3, 1)
+WriteProtected<byte>(0x14086BA8B, 0xE9)
+WriteProtected<uint>(0x14086BA8C, 0x00000145)
+WriteNop(0x14086BA90, 2)
+WriteProtected<uint>(0x14086BBD5, 0xE05E0FF3)
+WriteProtected<uint>(0x14086BBD9, 0x4D413D80)
+WriteProtected<uint>(0x14086BBDD, 0x74010180)
+WriteProtected<ushort>(0x14086BBE1, 0x680E)
+WriteProtected<uint>(0x14086BBE7, 0x0C5E0FF3)
+WriteProtected<uint>(0x14086BBEB, 0xC4834824)
+WriteProtected<byte>(0x14086BBEF, 0x08)
+WriteProtected<uint>(0x14086BBF0, 0xE9C1280F)
+WriteProtected<uint>(0x14086BBF4, 0xFFFFFE9A)
+WriteProtected<byte>(0x1406781CE, 0xE9)
+WriteProtected<uint>(0x1406781CF, 0x001F39E3)
+WriteProtected<ushort>(0x14086BBB6, 0x05C6)
+WriteProtected<uint>(0x14086BBB8, 0x01804D64)
+WriteProtected<ushort>(0x14086BBBC, 0xE801)
+WriteProtected<uint>(0x14086BBBE, 0xFFED410E)
+WriteProtected<byte>(0x14086BBC2, 0xE9)
+WriteProtected<uint>(0x14086BBC3, 0xFFE0C60C)
+WriteProtected<uint>(0x1401255FD, 0x01F4B31C)
+WriteProtected<uint>(0x1401261E7, 0x01F4A732)
+WriteProtected<uint>(0x140127897, 0x01F49082)
+WriteProtected<uint>(0x140127C1A, 0x01F48CFF)
+WriteProtected<uint>(0x1401284E7, 0x01F48432)
+WriteProtected<uint>(0x14012EC8E, 0x01F41C8B)
+WriteProtected<uint>(0x140132E05, 0x01F3DB14)
+WriteProtected<uint>(0x140133D05, 0x01F3CC14)
+WriteProtected<uint>(0x14039B307, 0x01CD5612)
+WriteProtected<uint>(0x14066A6C7, 0x01A06252)
+WriteProtected<uint>(0x1406AD57F, 0x019C339A)
+WriteProtected<uint>(0x1406E183C, 0x0198F0DD)
+WriteProtected<uint>(0x1406E5025, 0x0198B8F4)
+WriteProtected<uint>(0x14073FB69, 0x01930DB0)
+WriteProtected<uint>(0x14073FBBE, 0x93110FF3)
+WriteProtected<uint>(0x14073FBC2, 0x000000B4)
+WriteNop(0x14073FBC6, 2)
+WriteProtected<uint>(0x142B1A6BA, 0xFF55625F)
+WriteProtected<uint>(0x142B1B89B, 0xFF55507E)
+WriteProtected<ushort>(0x14086BB60, 0x05C6)
+WriteProtected<uint>(0x14086BB62, 0x01804DBA)
+WriteProtected<ushort>(0x14086BB66, 0xE900)
+WriteProtected<uint>(0x14086BB68, 0xFFFFFF2A)
+WriteProtected<ushort>(0x1406C3EB9, 0x59EB)
+WriteNop(0x1406C3EBB, 8)
+WriteProtected<ushort>(0x1406C3F14, 0x44F3)
+WriteProtected<uint>(0x1406C3F16, 0x248C100F)
+WriteProtected<uint>(0x1406C3F1A, 0x000000A0)
+WriteProtected<ushort>(0x1406C3F1E, 0x05EB)
+WriteProtected<uint>(0x1406C3F20, 0xD5D80BE9)
+WriteProtected<uint>(0x1406C3F24, 0xF505C604)
+WriteProtected<uint>(0x1406C3F28, 0x00019AC9)
+WriteProtected<ushort>(0x1406C3F2C, 0x95EB)
+WriteProtected<byte>(0x1406E180F, 0xE9)
+WriteProtected<uint>(0x1406E1810, 0x0018A322)
+WriteProtected<ushort>(0x1406E1814, 0x5B0F)
+WriteProtected<byte>(0x1406E1816, 0xC0)
+WriteProtected<uint>(0x14086BA92, 0x90905FEB)
+WriteProtected<ushort>(0x14086BAF3, 0x36EB)
+WriteProtected<uint>(0x14086BB36, 0x6E0F4166)
+WriteProtected<ushort>(0x14086BBA5, 0x05C6)
+WriteProtected<uint>(0x14086BBA7, 0x01804D75)
+WriteProtected<ushort>(0x14086BBAB, 0xE801)
+WriteProtected<uint>(0x14086BBAD, 0xFFE0CC0F)
+WriteProtected<byte>(0x14086BBB1, 0xE9)
+WriteProtected<uint>(0x14086BBB2, 0xFFD2243C)
+WriteProtected<byte>(0x14058DFED, 0xE9)
+WriteProtected<uint>(0x14058DFEE, 0x002DDBB3)
+WriteProtected<byte>(0x14086BB3A, 0xC6)
+WriteProtected<uint>(0x14086BB3B, 0x6E0F4466)
+WriteProtected<byte>(0x14086BB3F, 0xE7)
+WriteProtected<uint>(0x14086BB40, 0xE45B0F45)
+WriteProtected<uint>(0x14086BB44, 0x6E0F4566)
+WriteProtected<byte>(0x14086BB48, 0xEE)
+WriteProtected<uint>(0x14086BB49, 0xED5B0F45)
+WriteProtected<uint>(0x14086BB4D, 0x5E0F45F3)
+WriteProtected<byte>(0x14086BB51, 0xE5)
+WriteProtected<uint>(0x14086BB52, 0x110F44F3)
+WriteProtected<uint>(0x14086BB56, 0x804DC225)
+WriteProtected<ushort>(0x14086BB5A, 0xE901)
+WriteProtected<uint>(0x14086BB5C, 0xFFE75CB4)
+WriteProtected<uint>(0x14086BB05, 0x88352F0F)
+WriteProtected<byte>(0x14086BB09, 0x32)
+WriteProtected<uint>(0x14086BB0A, 0x14730155)
+WriteProtected<uint>(0x14086BB0E, 0x355E0FF3)
+WriteProtected<uint>(0x14086BB12, 0x0155327E)
+WriteProtected<uint>(0x14086BB16, 0xCE590FF3)
+WriteProtected<uint>(0x14086BB1A, 0x35100FF3)
+WriteProtected<uint>(0x14086BB1E, 0x01553272)
+WriteProtected<uint>(0x14086BB22, 0xC65E0FF3)
+WriteProtected<byte>(0x14086BB26, 0xE9)
+WriteProtected<uint>(0x14086BB27, 0x00000035)
+WriteProtected<uint>(0x14086BB2B, 0x4DEF3D83)
+WriteProtected<uint>(0x14086BB2F, 0x74010180)
+WriteProtected<byte>(0x14086BB33, 0xEE)
+WriteProtected<ushort>(0x14086BB34, 0xCFEB)
+WriteProtected<ushort>(0x14086BC05, 0x05C6)
+WriteProtected<uint>(0x14086BC07, 0x01804D15)
+WriteProtected<ushort>(0x14086BC0B, 0xE801)
+WriteProtected<uint>(0x14086BC0D, 0xFFE0CBAF)
+WriteProtected<byte>(0x14086BC11, 0xE9)
+WriteProtected<uint>(0x14086BC12, 0xFFCF5C04)
+WriteProtected<byte>(0x140561815, 0xE9)
+WriteProtected<uint>(0x140561816, 0x0030A3EB)
+
+
+
+Code "120 FPS (experimental)" in "Graphics/FPS" by "M&M" 
+Write<float>(GetPointer(0x14240E818, 0x34), 1.0f / 120.0f); /* internal framerate */
+Write<float>(0x88D23BD8, 120.0f); /* external framerate */
+WriteNop(0x14061AE3B, 3); /* nop out framerate changer */
+WriteNop(0x14061D4FD, 5); /* nop out framerate changer */
+WriteNop(0x1406E5F96, 5); /* nop out framerate changer */
+
+
+
+Code "144 FPS (experimental)" in "Graphics/FPS" by "M&M" 
+Write<float>(GetPointer(0x14240E818, 0x34), 1.0f / 144.0f); /* internal framerate */
+Write<float>(0x88D23BD8, 144.0f); /* external framerate */
+WriteNop(0x14061AE3B, 3); /* nop out framerate changer */
+WriteNop(0x14061D4FD, 5); /* nop out framerate changer */
+WriteNop(0x1406E5F96, 5); /* nop out framerate changer */
+
+
+
+Code "165 FPS (experimental)" in "Graphics/FPS" by "M&M" 
+Write<float>(GetPointer(0x14240E818, 0x34), 1.0f / 165.0f); /* internal framerate */
+Write<float>(0x88D23BD8, 165.0f); /* external framerate */
+WriteNop(0x14061AE3B, 3); /* nop out framerate changer */
+WriteNop(0x14061D4FD, 5); /* nop out framerate changer */
+WriteNop(0x1406E5F96, 5); /* nop out framerate changer */
+
+
+Code "75 FPS (experimental)" in "Graphics/FPS" by "M&M" 
+Write<float>(GetPointer(0x14240E818, 0x34), 1.0f / 75.0f); /* internal framerate */
+Write<float>(0x88D23BD8, 75.0f); /* external framerate */
+WriteNop(0x14061AE3B, 3); /* nop out framerate changer */
+WriteNop(0x14061D4FD, 5); /* nop out framerate changer */
+WriteNop(0x1406E5F96, 5); /* nop out framerate changer */
+
+
+
