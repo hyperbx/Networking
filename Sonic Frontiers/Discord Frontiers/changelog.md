@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 2.1.0
+- Added support for Discord asset redirection, allowing for custom images for custom stages and/or characters. Click [here](https://github.com/hyperbx/Code-Mods/blob/main/Sonic%20Frontiers/DiscordFrontiers/README.md#mod-integration) for more information on integrating this into mods.
+
 ## Discord Frontiers - Version 2.0.2
 - Updated CommonLoader for new HE2ML location.
 
