@@ -1,3 +1,6 @@
+## Discord Frontiers - Version 2.1.1
+- Added support for custom stages that don't follow the `#-#` naming convention. Click [here](https://github.com/hyperbx/Code-Mods/blob/main/Sonic%20Frontiers/DiscordFrontiers/README.md#mod-integration) for more information on setting this up in `DiscordFrontiers.ini`.
+
 ## Discord Frontiers - Version 2.1.0
 - Added support for Discord asset redirection, allowing for custom images for custom stages and/or characters. Click [here](https://github.com/hyperbx/Code-Mods/blob/main/Sonic%20Frontiers/DiscordFrontiers/README.md#mod-integration) for more information on integrating this into mods.
 
